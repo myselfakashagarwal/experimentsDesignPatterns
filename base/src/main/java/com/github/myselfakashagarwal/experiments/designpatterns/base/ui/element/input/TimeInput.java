@@ -8,4 +8,13 @@ public class TimeInput extends AbstractInput implements TimeInputInteractable {
     public TimeInput(InputStyle style) {
         super(style);
     }
+
+    protected TimeInput(TimeInput other) {
+        super(other);
+    }
+
+    @Override
+    public TimeInput cloneElement() {
+        return new TimeInput(this);
+    }
 }

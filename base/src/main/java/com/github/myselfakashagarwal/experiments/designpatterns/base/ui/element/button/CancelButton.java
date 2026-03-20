@@ -8,4 +8,13 @@ public class CancelButton extends AbstractButton implements CancelButtonInteract
     public CancelButton(ButtonStyle style) {
         super(style);
     }
+
+    protected CancelButton(CancelButton other) {
+        super(other);
+    }
+
+    @Override
+    public CancelButton cloneElement() {
+        return new CancelButton(this);
+    }
 }

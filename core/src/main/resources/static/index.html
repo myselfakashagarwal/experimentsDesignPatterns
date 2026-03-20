@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Pattern Form Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+
+</head>
+<body>
+    <aside>
+        <div class="sidebar-section">
+            <span class="label">Session</span>
+            <span class="value-text" id="session-id">sess_loading...</span>
+        </div>
+
+        <div class="sidebar-section">
+            <span class="label">Theme</span>
+            <select id="theme-select" onchange="setTheme(this.value)">
+                <option value="normal">Normal</option>
+                <option value="retro">Retro</option>
+                <option value="minimalist">Minimalist</option>
+            </select>
+        </div>
+
+        <div class="sidebar-section">
+            <span class="label">Add Element</span>
+            <select id="element-type">
+                <option value="heading">Heading</option>
+                <option value="paragraph">Paragraph</option>
+                <optgroup label="Inputs">
+                    <option value="input:text">Text Input</option>
+                    <option value="input:number">Number Input</option>
+                    <option value="input:date">Date Input</option>
+                </optgroup>
+                <optgroup label="Buttons">
+                    <option value="button:confirm">Confirm Button</option>
+                    <option value="button:cancel">Cancel Button</option>
+                    <option value="button:add">Add Button</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="sidebar-section">
+            <span class="label">Text</span>
+            <input type="text" id="element-text" placeholder="text">
+            <button class="btn btn-primary" onclick="addToCanvas()" style="margin-top: 8px;">+ Add to canvas</button>
+        </div>
+
+        <div class="sidebar-section">
+            <span class="label">Remove by ID</span>
+            <div class="inline-group">
+                <input type="text" id="remove-id" placeholder="element id">
+                <button class="btn" onclick="removeById()" style="width: auto;">Remove</button>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <span class="label">Canvas Elements</span>
+            <div class="element-list" id="element-list">
+                Empty
+            </div>
+        </div>
+
+        <div class="sidebar-section" style="margin-top: auto;">
+            <button class="btn" onclick="clearSession()">Clear session</button>
+        </div>
+    </aside>
+
+    <main>
+        <div class="header">
+            <div class="toggle-group">
+                <button class="toggle-btn active" id="btn-preview" onclick="showView('preview')">Preview</button>
+                <button class="toggle-btn" id="btn-code" onclick="showView('code')">Code</button>
+            </div>
+            <div class="theme-pill" id="theme-pill">Normal</div>
+        </div>
+        <div class="canvas">
+            <div id="canvas-inner" class="empty-message">
+                Canvas is empty. Add elements from the left panel.
+            </div>
+            
+            <!-- Realistic Browser Preview -->
+            <div id="preview-container" style="display: none; width: 100%;">
+                <div class="page-browser">
+                    <div class="browser-header">
+                        <div class="red"></div>
+                        <div class="yellow"></div>
+                        <div class="green"></div>
+                        <span style="font-size: 11px; color: #999; margin-left: 20px;">localhost:8081/form/preview</span>
+                    </div>
+                    <div id="preview-content"></div>
+                </div>
+            </div>
+
+            <!-- Code View (Mac OS / Browser Style - Light) -->
+            <div id="code-container" style="display: none; width: 100%; height: 90%; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid #ddd; background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <div class="browser-header">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                    <div class="green"></div>
+                    <span style="font-size: 11px; color: #999; margin-left: 20px;">localhost:8081/form/code</span>
+                    <button class="copy-btn" onclick="copyCode()" style="margin-left: auto;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copy code
+                    </button>
+                </div>
+                <div class="code-scroll-container">
+                    <pre class="language-html"><code id="raw-html-code" class="language-html"></code></pre>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

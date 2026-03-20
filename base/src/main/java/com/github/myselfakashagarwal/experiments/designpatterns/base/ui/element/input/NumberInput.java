@@ -8,4 +8,13 @@ public class NumberInput extends AbstractInput implements NumberInputInteractabl
     public NumberInput(InputStyle style) {
         super(style);
     }
+
+    protected NumberInput(NumberInput other) {
+        super(other);
+    }
+
+    @Override
+    public NumberInput cloneElement() {
+        return new NumberInput(this);
+    }
 }

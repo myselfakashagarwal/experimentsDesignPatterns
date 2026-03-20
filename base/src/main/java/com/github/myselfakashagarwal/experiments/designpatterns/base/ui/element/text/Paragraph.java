@@ -9,6 +9,15 @@ public class Paragraph extends AbstractText implements ParagraphInteractable {
         super(style);
     }
 
+    protected Paragraph(Paragraph other) {
+        super(other);
+    }
+
+    @Override
+    public Paragraph cloneElement() {
+        return new Paragraph(this);
+    }
+
     @Override
     public void render() {
         super.render();

@@ -5,12 +5,14 @@ public abstract class ButtonStyle {
     protected String margin;
     protected String borderColor;
     protected String backgroundColor;
+    protected String color;
 
     public ButtonStyle(String padding, String margin, String borderColor, String backgroundColor) {
         this.padding = padding;
         this.margin = margin;
         this.borderColor = borderColor;
         this.backgroundColor = backgroundColor;
+        this.color = "#000000";
     }
 
     public abstract void apply();
@@ -46,4 +48,7 @@ public abstract class ButtonStyle {
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
+
+    public String getColor() { return color; }
+    public void setColor(String color) { this.color = color; }
 }

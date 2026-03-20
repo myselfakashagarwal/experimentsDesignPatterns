@@ -9,6 +9,15 @@ public class Heading extends AbstractText implements HeadingInteractable {
         super(style);
     }
 
+    protected Heading(Heading other) {
+        super(other);
+    }
+
+    @Override
+    public Heading cloneElement() {
+        return new Heading(this);
+    }
+
     @Override
     public void render() {
         super.render();

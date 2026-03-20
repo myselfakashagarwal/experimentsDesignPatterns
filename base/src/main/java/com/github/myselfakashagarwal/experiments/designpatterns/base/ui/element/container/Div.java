@@ -1,17 +1,19 @@
 package com.github.myselfakashagarwal.experiments.designpatterns.base.ui.element.container;
 
-import com.github.myselfakashagarwal.experiments.designpatterns.base.ui.interaction.container.DivInteractable;
 import com.github.myselfakashagarwal.experiments.designpatterns.base.ui.style.container.ContainerStyle;
 
-public class Div extends AbstractContainer implements DivInteractable {
+public class Div extends AbstractContainer {
 
     public Div(ContainerStyle style) {
         super(style);
     }
 
+    protected Div(Div other) {
+        super(other);
+    }
+
     @Override
-    public void render() {
-        super.render();
-        System.out.println("Rendering Div container...");
+    public Div cloneElement() {
+        return new Div(this);
     }
 }

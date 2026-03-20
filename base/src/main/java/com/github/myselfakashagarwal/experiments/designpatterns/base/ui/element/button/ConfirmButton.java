@@ -8,4 +8,13 @@ public class ConfirmButton extends AbstractButton implements ConfirmButtonIntera
     public ConfirmButton(ButtonStyle style) {
         super(style);
     }
+
+    protected ConfirmButton(ConfirmButton other) {
+        super(other);
+    }
+
+    @Override
+    public ConfirmButton cloneElement() {
+        return new ConfirmButton(this);
+    }
 }
